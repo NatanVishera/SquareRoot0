@@ -34,6 +34,19 @@ short SQRT[] = {
     0x1f3d, 0x1f4e, 0x1f5e, 0x1f6e, 0x1f7e, 0x1f8f, 0x1f9f, 0x1faf, 0x1fbf,
     0x1fcf, 0x1fdf, 0x1fef };
 
+int CountZeros(unsigned int idx) {
+
+    int total_bits = sizeof(idx) * 8;
+    int res = 0;
+
+    while (!(idx & (1 << (total_bits - 1)))) {
+        idx = (idx << 1); // Shift 'x' left by one bit.
+        res++; // Increment the count of leading zeros.
+    }
+
+    return res;
+}
+
 int SquareRoot0(int a) {
 
     int lzcs = CountZeros(a); // Calculate the number of leading zeros in 'a'.
@@ -54,19 +67,6 @@ int SquareRoot0(int a) {
 
     // Return square root value from precomputed array.
     return SQRT[idx - 64] << (31 - lzcs >> 1) >> 12; 
-}
-
-int CountZeros(unsigned int idx) {
-
-    int total_bits = sizeof(idx) * 8;
-    int res = 0;
-
-    while (!(idx & (1 << (total_bits - 1)))) {
-        idx = (idx << 1); // Shift 'x' left by one bit.
-        res++; // Increment the count of leading zeros.
-    }
-
-    return res;
 }
 ```
 
