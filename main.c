@@ -21,6 +21,10 @@ int main(int argc, char* argv[]) {
 
 int SquareRoot0(int a) {
 
+    if (a == 0){
+        return 0;
+    }
+    
     int lzcs = CountZeros(a); // Calculate the number of leading zeros in 'a'.
     if (lzcs == 32) { // Special case: all bits are zero.
         return 0;
